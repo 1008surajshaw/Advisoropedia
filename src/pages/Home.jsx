@@ -37,6 +37,7 @@ const Home = (props) => {
     setTotalResults(parseData.totalResults);
     setLoading(false);
   };
+  
   return (
     <div>
       <h1  className="text-4xl text-yellow-200 mt-4 items-center text-center  py-3">GroundNews Top Headlines from {capitalise(props.category)}</h1>

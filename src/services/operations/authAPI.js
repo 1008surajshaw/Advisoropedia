@@ -4,14 +4,14 @@ import { setLoading,setToken } from "../../slices/authSlice";
 import { apiConnector } from "../apiconnector";
 import { setUser } from "../../slices/profileSlice"
 
- const BASE_URL = process.env.REACT_APP_BASE_URL
+ const BASE_URL =process.env.REACT_APP_BASE_URL
 
 export function sendotp(email,userName,navigate){
     return async (dispatch) => {
         const toastId = toast.loading("Loading...")
         dispatch(setLoading(true))
         try {
-          const response = await apiConnector("POST","http://localhost:4000/api/v1/auth/sendotp" , {
+          const response = await apiConnector("POST",BASE_URL+"/auth/sendotp" , {
             email,
             userName,
             checkUserPresent: true,
@@ -48,7 +48,7 @@ export function signUp(
       const toastId = toast.loading("Loading...")
       dispatch(setLoading(true))
       try {
-        const response = await apiConnector("POST", "http://localhost:4000/api/v1/auth/signup", {
+        const response = await apiConnector("POST", BASE_URL+"/auth/signup", {
           userName,
           email,
           password,
@@ -84,7 +84,7 @@ export function signUp(
       dispatch(setLoading(true))
       console.log("raju")
       try {
-        const response = await apiConnector("POST", "http://localhost:4000/api/v1/auth/login", {
+        const response = await apiConnector("POST", BASE_URL+"/auth/login", {
           email,
           password,
         })
@@ -132,7 +132,7 @@ export function signUp(
     return async(dispatch) => {
       dispatch(setLoading(true));
       try{
-        const response = await apiConnector("POST","http://localhost:4000/api/v1/auth/reset-password-token" , {email,})
+        const response = await apiConnector("POST", BASE_URL+"/auth/reset-password-token" , {email,})
   
         console.log("RESET PASSWORD TOKEN RESPONSE....", response);
   
@@ -155,7 +155,7 @@ export function signUp(
     return async(dispatch) => {
       dispatch(setLoading(true));
       try{
-        const response = await apiConnector("POST", "http://localhost:4000/api/v1/auth/reset-password", {password, confirmPassword, token});
+        const response = await apiConnector("POST", BASE_URL+"/auth/reset-password", {password, confirmPassword, token});
   
         console.log("RESET Password RESPONSE ... ", response);
   
@@ -180,7 +180,7 @@ export function signUp(
     console.log(userName,"ooooo")
     try{
       
-       const res = await apiConnector("GET" , "http://localhost:4000/api/v1/auth/finduser",  userName   )
+       const res = await apiConnector("GET" , BASE_URL+"/auth/finduser",  userName   )
    
        result =  res
        console.log(result)
